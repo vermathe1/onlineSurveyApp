@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Survey } from './containers/survey';
+import { Home } from './containers/home';
+import  QuestionsPanel  from './containers/questionsPanel'
 import {
   BrowserRouter as Router,
   Route,
@@ -11,12 +12,13 @@ class App extends Component {
   render() {
     return (
       <div className="">
-     <Router>
-      <Switch>
-        <Route path = "/" component = { Survey }/>
-      </Switch> 
-    </Router>
-    </div>
+         <Router>
+          <Switch>
+            <Route exact path = "/" component = { Home }/>
+            <Route path = "/survey/:pagenumber" component = { QuestionsPanel }/>
+          </Switch> 
+        </Router>
+      </div>
     );
   }
 }

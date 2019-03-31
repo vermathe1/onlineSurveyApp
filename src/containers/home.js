@@ -1,12 +1,13 @@
 import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export class Survey extends Component {
+export class Home extends Component {
   static propTypes = {}
   state = {}
   render () {
     return (
       <div>
-          survey
+         <Link to ="/survey/1"> Start the survey </Link>
        </div>
         
     )
