@@ -1,9 +1,20 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
+import { Button } from '../components/button';
 
 
+export class Fields extends Component {
+  static propTypes = {}
 
-export function Fields (props) {
-  return (
-    <div>Fields</div>
-  )
+  onChange=(e)=>{
+  	this.props.getUserAnswer(e.target.value)
+  }
+
+  render () {
+    return (
+    	<div>
+    		<input type="text" value={this.props.ans} onChange={this.onChange}/>
+    	</div>
+    )
+  }
 }
+
