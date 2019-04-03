@@ -1,19 +1,34 @@
 import React, { PropTypes, Component } from 'react'
 import { Button } from '../components/button';
 
-
 export class Fields extends Component {
   static propTypes = {}
 
+  constructor(props){
+    super(props);
+    this.state = {
+      ans : this.props.ans
+    }
+  }
+
+componentWillReceiveProps(nextprops){
+  if(nextprops.index != this.props.index){
+    this.setState({
+      ans:nextprops.ans
+    })
+  }
+}
+
   onChange=(e)=>{
-  	this.props.getUserAnswer(e.target.value)
+    this.props.setUserAnswer(this.props.index,e.target.value);
+    this.setState({ans:e.target.value});
   }
 
   render () {
     return (
-    	<div>
-    		<input type="text" value={this.props.ans} onChange={this.onChange}/>
-    	</div>
+      <div className="answer">
+        <input type="text" value={this.state.ans} onChange={this.onChange}/>
+      </div>
     )
   }
 }

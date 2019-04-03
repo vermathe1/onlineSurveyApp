@@ -1,19 +1,13 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router-dom'
-
-Button.propTypes = {
-
-}
+import { Link } from 'react-router-dom';
 
 export function Button (props) {
+	if(props.disable){
+		return <span className="button">{props.text}</span>
+	}
   return (
-  	<Link to={`/survey/${props.index}`} onClick={e=>saveAnswer(e,props.saveAnswer,props.ans,props.indexOfData)}>{props.text}</Link>
+  	<button className="button">
+  		<Link to={`/survey/${props.index}`} disabled={props.disable}> {props.text} </Link>
+  	</button>
   )
 }
-
-const saveAnswer = (e,fn,ans,ind) => {
-	e.preventDefault();
-	fn(ind,ans);
-}
-
-

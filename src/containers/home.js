@@ -6,7 +6,7 @@ export class Home extends Component {
   state = {}
   render () {
     return (
-      <div>
+      <div className="button">
          <Link to ="/survey/1"> Start the survey </Link>
        </div>
         

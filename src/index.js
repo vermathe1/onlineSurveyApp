@@ -9,14 +9,13 @@ import { surveyQuestions } from './reducers';
 import { Provider } from 'react-redux';
 
 const getLocalStorredState = loadStorage();
-const store = createStore(surveyQuestions,getLocalStorredState);
-
+const localstorage = getLocalStorredState && getLocalStorredState.surveyQuestions;
+const store = createStore(surveyQuestions,localstorage);
 store.subscribe(()=>{
 	saveStorage({
-		surveyQuestions: store.getState().surveyQuestions
+		surveyQuestions: store.getState()
 	})
 });
-
 
 ReactDOM.render(
 	<Provider store = { store }>

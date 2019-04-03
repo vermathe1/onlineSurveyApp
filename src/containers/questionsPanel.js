@@ -2,53 +2,46 @@ import React, { PropTypes, Component } from 'react'
 import { Question } from '../components/question';
 import { Fields } from '../components/fields';
 import { Button } from '../components/button';
+import { Progressbar } from '../components/progressbar';
+import { Summarypage } from './summary';
 import { connect } from 'react-redux';
 
 class QuestionsPanel extends Component {
-  static propTypes = {}
-  constructor(props){
-  	super(props);
-  	this.state = {
-  		inputAnswer :""
-  	}
-  	this.getUserAnswer = this.getUserAnswer.bind(this);
-  	this.saveUserAnswer = this.saveUserAnswer.bind(this);
-  }
-
-  getUserAnswer(ans){
-  	return(
-		this.setState({
-			inputAnswer:ans
-		})
-	)
-  } 
-
-  saveUserAnswer = () =>{
-  	this.props.saveAnswer()
-  }
-
   render () {
-  	let page = Number(this.props.match.params.pagenumber);
-  	let index = page-1;
-  	let nextpage = page+1;
-  	let prevPage = page-1;
-  	let qstn = this.props.questionsAnswer[index].question;
-  	let ans = this.props.questionsAnswer[index].answer;
+    if(this.props.match.params.pagenumber >10){
+      return(
+        <div className="summary-page">
+          <Progressbar progress={1}/>
+          <Summarypage summary={this.props.questionsAnswer}/>
+        </div>
+        )
+    }
+    let page = Number(this.props.match.params.pagenumber);
+    let index = page-1;
+    let nextpage = page+1;
+    let prevPage = page-1;
+    let progress = (index/this.props.questionsAnswer.length);
+    let qstn = this.props.questionsAnswer[index].question;
+    let ans = this.props.questionsAnswer[index].answer;
     return (
-    	<div>
+    	<div className="mainContainer">
+        <Progressbar progress={progress}/>
 	      <Question qst = { qstn } />
-	      <Fields ans = { this.state.inputAnswer || ans }  getUserAnswer = {this.getUserAnswer}/>
-	      <Button index ={ nextpage } text="Next" saveAnswer={this.props.saveAnswer} ans ={ this.state.inputAnswer } indexOfData={index}/>
-	      { this.props.currentpage !=1 && 
-	      	<Button index ={ prevPage } text="Back" saveAnswer={this.saveUserAnswer} ans={ this.state.inputAnswer } indexOfData={index}/> 
-	      }
-      	</div>
+	      <Fields setUserAnswer = { this.props.saveAnswer } index = { page } ans = {ans} />
+        <div className="buttonSection">
+          <Button index = { nextpage } text="Next"  disable = {!ans}/>
+          { page!=1 && <Button index = { prevPage } text="Back" /> }
+        </div>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-	return {questionsAnswer: state.questionsAnswer};
+	return {
+    questionsAnswer: state.questionsAnswer,
+    progress:state.progress,
+  };
 };
 
 const mapDispatchToProps = (dispatch)=>({
@@ -56,7 +49,7 @@ const mapDispatchToProps = (dispatch)=>({
 		type:"setPageData",
 		answer,
 		index
-	})},
+	})}
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(QuestionsPanel);

@@ -1,44 +1,45 @@
 export const data = {
       currentIndex: 0,
       completed: false,
+      progress : 0.1,
       questionsAnswer: [
-        { // 1
+        { id:1,
           question: 'What is your age',
           answer: ""
         },
-        { // 2
+        { id:2,
           question: 'What is your hobby ?',
           answer: ""
         },
-        { // 3
+        { id:3,
           question: 'Where do you live ?',
           answer: ""
         },
-        { // 4
+        { id:4,
           question: 'What is your favourite game ?',
           answer: ""
         },
-        { // 5
+        { id:5,
           question: 'How many memberes are there in your family?',
           answer: ""
         },
-        { // 6
+        { id:6,
           question: 'What is you favourite food ?',
           answer: ""
         },
-        { // 7
+        { id:7,
           question: 'What do you do ?',
           answer: ""
         },
-        { // 8
+        { id:8,
           question: 'Are you single or married ?',
           answer: ""
         },
-        { // 9
+        { id:9,
           question: 'Where does your family stay ?',
           answer: ""
         },
-        { // 10
+        { id:10,
           question: 'What is the aim of your life ?',
           answer: ""
         }

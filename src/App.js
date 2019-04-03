@@ -15,7 +15,7 @@ class App extends Component {
          <Router>
           <Switch>
             <Route exact path = "/" component = { Home }/>
-            <Route path = "/survey/:pagenumber" component = { QuestionsPanel }/>
+            <Route path = "/survey/:pagenumber" render = {(props)=> <QuestionsPanel {...props}/> }/>
           </Switch> 
         </Router>
       </div>

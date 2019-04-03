@@ -1,22 +1,21 @@
 import { data } from '../data';
 
 export const surveyQuestions = (state = data, action) => {
-  var i=0;
-  switch (action.type) {
-    case 'setPageData':
-      return state.questionsAnswer.map(data=>{
-        if(action.index-1 ===i){
-          i++;
-          return {...data,answer:action.answer }
-        }else{
-          i++;
-          return data;
-        }
-        
-      })
 
-    //return Object.assign({},state,{currentIndex:action.currentIndex , completed: action.completed});
-    default:
+  switch (action.type) { 
+    case "setPageData" :{
+     return Object.assign({},state,{
+        questionsAnswer: state.questionsAnswer.map(obj=>{
+        if(obj.id === action.index){
+          obj.answer = action.answer
+          return obj;
+        }else{
+          return obj;
+        }
+      })
+     });
+    }
+     default:
       return state;
   }
 };
