@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { Question } from '../components/question';
 import { Fields } from '../components/fields';
 import { Button } from '../components/button';
@@ -30,7 +30,7 @@ class QuestionsPanel extends Component {
 	      <Fields setUserAnswer = { this.props.saveAnswer } index = { page } ans = {ans} />
         <div className="buttonSection">
           <Button index = { nextpage } text="Next"  disable = {!ans}/>
-          { page!=1 && <Button index = { prevPage } text="Back" /> }
+          { page!==1 && <Button index = { prevPage } text="Back" /> }
         </div>
       </div>
     )

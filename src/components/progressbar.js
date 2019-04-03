@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 export function Progressbar (props) {
   return (
@@ -7,9 +7,4 @@ export function Progressbar (props) {
   		<div className="leftpart" style={{flex:1-props.progress}}></div>
   	</div>
   )
-}
-
-Progressbar.defaultProps = {
-  style: {},
-  incompleteBackgroundColor: '#fff'
 }

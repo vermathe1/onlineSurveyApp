@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react'
-import { Button } from '../components/button';
+import React, { Component } from 'react'
 
 export class Fields extends Component {
   static propTypes = {}
@@ -12,7 +11,7 @@ export class Fields extends Component {
   }
 
 componentWillReceiveProps(nextprops){
-  if(nextprops.index != this.props.index){
+  if(nextprops.index !== this.props.index){
     this.setState({
       ans:nextprops.ans
     })

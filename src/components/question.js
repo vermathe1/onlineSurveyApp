@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react'
-
+import React from 'react'
 
 export function Question (props) {
   return (
